@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow | Task Manager</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/">TaskFlow</a>
+        <span class="tagline">Plan better. Get things done.</span>
+    </header>
+
+    <main class="container">
+        <section class="welcome">
+            <p class="eyebrow">YOUR PERSONAL WORKSPACE</p>
+            <h1>Make progress, one task at a time.</h1>
+            <p class="muted">Organize your work and keep track of your progress.</p>
+        </section>
+
+        <section class="stats">
+            <div class="stat-card">
+                <span>Total tasks</span>
+                <strong>{{ total }}</strong>
+            </div>
+            <div class="stat-card">
+                <span>Pending</span>
+                <strong>{{ pending }}</strong>
+            </div>
+            <div class="stat-card">
+                <span>Completed</span>
+                <strong>{{ completed }}</strong>
+            </div>
+        </section>
+
+        <section class="panel">
+            <h2>Create a task</h2>
+            <form action="/tasks/add" method="POST" class="task-form">
+                <label for="title">Task title</label>
+                <input id="title" name="title" type="text"
+                       placeholder="e.g. Complete DevOps assignment"
+                       maxlength="100" required>
+
+                <label for="description">Description (optional)</label>
+                <textarea id="description" name="description"
+                          placeholder="Add a few details..." rows="3"
+                          maxlength="500"></textarea>
+
+                <button type="submit">+ Add task</button>
+            </form>
+        </section>
+
+        <section class="task-section">
+            <div class="section-heading">
+                <h2>Your tasks</h2>
+                <nav class="filters">
+                    <a class="{{ 'active' if current_filter == 'all' else '' }}"
+                       href="/?filter=all">All</a>
+                    <a class="{{ 'active' if current_filter == 'pending' else '' }}"
+                       href="/?filter=pending">Pending</a>
+                    <a class="{{ 'active' if current_filter == 'completed' else '' }}"
+                       href="/?filter=completed">Completed</a>
+                </nav>
+            </div>
+
+            {% if tasks %}
+                <div class="task-list">
+                    {% for task in tasks %}
+                    <article class="task-card">
+                        <div class="task-content">
+                            <span class="status {{ 'done' if task.completed else 'waiting' }}">
+                                {{ 'COMPLETED' if task.completed else 'PENDING' }}
+                            </span>
+                            <h3 class="{{ 'strike' if task.completed else '' }}">
+                                {{ task.title }}
+                            </h3>
+                            {% if task.description %}
+                                <p class="muted">{{ task.description }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="task-actions">
+                            <form action="/tasks/{{ task.id }}/toggle" method="POST">
+                                <button class="secondary" type="submit">
+                                    {{ 'Reopen' if task.completed else 'Complete' }}
+                                </button>
+                            </form>
+                            <a class="edit-link"
+                               href="/tasks/{{ task.id }}/edit">Edit</a>
+                            <form action="/tasks/{{ task.id }}/delete"
+                                  method="POST"
+                                  onsubmit="return confirm('Delete this task?')">
+                                <button class="danger" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <h3>No tasks here yet</h3>
+                    <p class="muted">Add a task above to get started.</p>
+                </div>
+            {% endif %}
+        </section>
+
+        <footer>
+            TaskFlow · Built with Python and Flask
+        </footer>
+    </main>
+</body>
+</html>

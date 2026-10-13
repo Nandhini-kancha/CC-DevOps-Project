@@ -1,0 +1,303 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f4f6fb;
+    color: #20283b;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.topbar {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e9f2;
+    padding: 18px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.brand {
+    color: #4f46e5;
+    font-size: 24px;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.tagline, .muted {
+    color: #727b90;
+}
+
+.container {
+    width: min(100% - 32px, 960px);
+    margin: 36px auto;
+}
+
+.welcome {
+    margin-bottom: 28px;
+}
+
+.eyebrow {
+    color: #4f46e5;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+h1 {
+    font-size: clamp(28px, 5vw, 40px);
+    margin: 8px 0;
+    letter-spacing: -1px;
+}
+
+h2 {
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.stat-card, .panel, .task-card {
+    background: #ffffff;
+    border: 1px solid #e8ebf3;
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(30, 41, 59, 0.04);
+}
+
+.stat-card {
+    padding: 22px;
+}
+
+.stat-card span, .stat-card strong {
+    display: block;
+}
+
+.stat-card span {
+    color: #727b90;
+    font-size: 14px;
+}
+
+.stat-card strong {
+    font-size: 30px;
+    margin-top: 8px;
+}
+
+.panel {
+    padding: 26px;
+    margin-bottom: 32px;
+}
+
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #dce1eb;
+    border-radius: 8px;
+    font: inherit;
+    background: #ffffff;
+}
+
+input:focus, textarea:focus {
+    outline: 2px solid #c7d2fe;
+    border-color: #6366f1;
+}
+
+button, .edit-link {
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    border: 0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.task-form > button {
+    margin-top: 8px;
+    background: #4f46e5;
+    color: white;
+    padding: 13px;
+}
+
+button:hover {
+    opacity: 0.86;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.filters {
+    display: flex;
+    gap: 6px;
+}
+
+.filters a {
+    color: #667085;
+    padding: 9px 12px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.filters a.active {
+    background: #e9e8ff;
+    color: #4338ca;
+    font-weight: 700;
+}
+
+.task-list {
+    display: grid;
+    gap: 14px;
+    margin-top: 18px;
+}
+
+.task-card {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+}
+
+.task-content {
+    min-width: 0;
+}
+
+.task-content h3 {
+    margin: 10px 0 6px;
+    overflow-wrap: anywhere;
+}
+
+.task-content p {
+    margin-bottom: 0;
+    overflow-wrap: anywhere;
+}
+
+.status {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+}
+
+.status.done {
+    color: #16803d;
+}
+
+.status.waiting {
+    color: #b7791f;
+}
+
+.strike {
+    text-decoration: line-through;
+    color: #8b93a5;
+}
+
+.task-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.secondary {
+    background: #e9e8ff;
+    color: #4338ca;
+}
+
+.edit-link {
+    background: #edf0f6;
+    color: #344054;
+}
+
+.danger {
+    background: #fff0f0;
+    color: #c53030;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 36px 16px;
+    background: white;
+    border: 1px dashed #d5dbea;
+    border-radius: 14px;
+    margin-top: 18px;
+}
+
+footer {
+    text-align: center;
+    color: #8b93a5;
+    font-size: 13px;
+    padding: 30px 0 10px;
+}
+
+.edit-container {
+    max-width: 680px;
+}
+
+.back-link, .cancel-link {
+    color: #4f46e5;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+@media (max-width: 650px) {
+    .topbar {
+        padding: 16px 5%;
+    }
+
+    .tagline {
+        font-size: 12px;
+        text-align: right;
+    }
+
+    .stats {
+        gap: 8px;
+    }
+
+    .stat-card {
+        padding: 14px;
+    }
+
+    .stat-card span {
+        font-size: 12px;
+    }
+
+    .stat-card strong {
+        font-size: 24px;
+    }
+
+    .task-card {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .task-actions {
+        justify-content: flex-start;
+    }
+}

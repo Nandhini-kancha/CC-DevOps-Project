@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Task | TaskFlow</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/">TaskFlow</a>
+        <a class="back-link" href="/">Back to dashboard</a>
+    </header>
+
+    <main class="container edit-container">
+        <section class="welcome">
+            <p class="eyebrow">UPDATE YOUR WORK</p>
+            <h1>Edit task</h1>
+            <p class="muted">Change the details and save your updates.</p>
+        </section>
+
+        <section class="panel">
+            <form method="POST" class="task-form">
+                <label for="title">Task title</label>
+                <input id="title" name="title" type="text"
+                       value="{{ task.title }}" maxlength="100" required>
+
+                <label for="description">Description</label>
+                <textarea id="description" name="description"
+                          rows="4" maxlength="500">{{ task.description }}</textarea>
+
+                <button type="submit">Save changes</button>
+                <a class="cancel-link" href="/">Cancel</a>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
