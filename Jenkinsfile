@@ -20,8 +20,15 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker --version'
                 sh 'docker build -t taskflow-app .'
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh 'kubectl --kubeconfig=/var/jenkins_home/.kube/config apply -f deployment.yaml'
+                sh 'kubectl --kubeconfig=/var/jenkins_home/.kube/config apply -f service.yaml'
+                sh 'kubectl --kubeconfig=/var/jenkins_home/.kube/config rollout status deployment/taskflow --timeout=120s'
             }
         }
     }
